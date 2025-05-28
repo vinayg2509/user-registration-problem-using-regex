@@ -36,6 +36,12 @@ public class UserRegistration
         return passwordRuleOne.matches("^[^\\s]{8,}");
     }
 
+    //Method to validate password as per Rule-2
+    public static boolean validateRuleTwo(String passwordRuleTwo)
+    {
+        return passwordRuleTwo.matches("^(?=.*[A-Z])[^\\s]{8,}$");
+    }
+
     public static void main(String[] args)
     {
         Scanner scanner=new Scanner(System.in);
@@ -56,12 +62,18 @@ public class UserRegistration
 //        System.out.println("Email validate "+validateMobileNumber(mobileNUmber));
 
 
-        System.out.println("Enter mobile number");
-        String passwordRuleOne=scanner.nextLine();
-        System.out.println("Email validate "+validateRuleOne(passwordRuleOne));
+//        System.out.println("Enter password");
+//        String passwordRuleOne=scanner.nextLine();
+//        System.out.println("Email validate "+validateRuleOne(passwordRuleOne));
+
+        System.out.println("Enter password");
+        String passwordRuleTwo=scanner.nextLine();
+        System.out.println("Email validate "+validateRuleTwo(passwordRuleTwo));
 
 
     }
+
+
 
 
 }
