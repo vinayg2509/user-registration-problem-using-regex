@@ -29,6 +29,13 @@ public class UserRegistration
     {
         return mobileNumber.matches("^[0-9]{2,}\\s[0-9]{10}");
     }
+
+    //Method to validate password as per Rule-1
+    public static boolean validateRuleOne(String passwordRuleOne)
+    {
+        return passwordRuleOne.matches("^[^\\s]{8,}");
+    }
+
     public static void main(String[] args)
     {
         Scanner scanner=new Scanner(System.in);
@@ -44,9 +51,14 @@ public class UserRegistration
 //        String email=scanner.nextLine();
 //        System.out.println("Email validate "+validateEmail(email));
 
+//        System.out.println("Enter mobile number");
+//        String mobileNUmber=scanner.nextLine();
+//        System.out.println("Email validate "+validateMobileNumber(mobileNUmber));
+
+
         System.out.println("Enter mobile number");
-        String mobileNUmber=scanner.nextLine();
-        System.out.println("Email validate "+validateMobileNumber(mobileNUmber));
+        String passwordRuleOne=scanner.nextLine();
+        System.out.println("Email validate "+validateRuleOne(passwordRuleOne));
 
 
     }
