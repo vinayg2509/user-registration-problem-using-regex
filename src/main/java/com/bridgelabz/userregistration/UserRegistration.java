@@ -47,6 +47,13 @@ public class UserRegistration
     {
         return passwordRuleThree.matches("(?=.*[0-9])(?=.*[A-Z])[^\\s]{8,}$");
     }
+
+    private static boolean validateRuleFour(String passwordRuleFour)
+    {
+        return passwordRuleFour.matches("^(?=.*[A-Z])(?=.*[0-9])[^\\s](?=^[^\\W_]*[\\W_][^\\W_]*$).{8,}$");
+    }
+
+
     public static void main(String[] args)
     {
         Scanner scanner=new Scanner(System.in);
@@ -75,10 +82,13 @@ public class UserRegistration
 //        String passwordRuleTwo=scanner.nextLine();
 //        System.out.println("Email validate "+validateRuleTwo(passwordRuleTwo));
 
-        System.out.println("Enter password");
-        String passwordRuleThree=scanner.nextLine();
-        System.out.println("Email validate "+validateRuleThree(passwordRuleThree));
+//        System.out.println("Enter password");
+//        String passwordRuleThree=scanner.nextLine();
+//        System.out.println("Email validate "+validateRuleThree(passwordRuleThree));
 
+        System.out.println("Enter password");
+        String passwordRuleFour=scanner.nextLine();
+        System.out.println("Email validate "+validateRuleFour(passwordRuleFour));
 
 
     }
