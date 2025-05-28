@@ -1,109 +1,121 @@
+// Package declaration, organizes your class into a namespace.
 package com.bridgelabz.userregistration;
 
+// Import Scanner class for reading user input from console.
 import java.util.Scanner;
 
+// Class declaration
 public class UserRegistration
 {
-    //UC-1Method to validate first name
+    // UC-1: Method to validate first name with first capital letter and minimum 3 characters
     public static boolean validateFirstName(String firstName)
     {
+        // Regex: starts with capital letter, followed by at least two letters
         return firstName.matches("^[A-Z][a-zA-Z]{2,}$");
     }
 
-    //UC-2 Method to validate second name
+    // UC-2: Method to validate second name (same rule as first name)
     public static boolean validateSecondName(String secondName)
     {
         return secondName.matches("^[A-Z][a-zA-Z]{2,}$");
     }
 
-    //UC-3 Method to validate email
-    public static  boolean validateEmail(String email)
+    // UC-3: Method to validate email
+    public static boolean validateEmail(String email)
     {
-        return  email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
-      //return email.matches("^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)?@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$");
-        //return email.matches("^[a-zA-Z0-9]+([._%+-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,})+$");
+        // Regex to validate email format
+        return email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
     }
 
-    //UC-4 Method to validate mobile number
+    // UC-4: Method to validate mobile number (format: country code space 10-digit number)
     public static boolean validateMobileNumber(String mobileNumber)
     {
         return mobileNumber.matches("^[0-9]{2,}\\s[0-9]{10}");
     }
 
-    //UC-5 Method to validate password as per Rule-1
+    // UC-5: Validate password (Rule 1: Minimum 8 characters, no whitespace)
     public static boolean validateRuleOne(String passwordRuleOne)
     {
-        return passwordRuleOne.matches("^[^\\s]{8,}");
+        return passwordRuleOne.matches("^[^\\s]{8,}");  // At least 8 non-whitespace characters
     }
 
-    //UC-6 Method to validate password as per Rule-2
+    // UC-6: Validate password (Rule 2: At least one uppercase letter)
     public static boolean validateRuleTwo(String passwordRuleTwo)
     {
-        return passwordRuleTwo.matches("^(?=.*[A-Z])[^\\s]{8,}$");
+        return passwordRuleTwo.matches("^(?=.*[A-Z])[^\\s]{8,}$"); // At least one uppercase, 8+ chars
     }
 
-    //UC-7 Method to validate password as per Rule-3
+    // UC-7: Validate password (Rule 3: At least one numeric digit and one uppercase letter)
     public static boolean validateRuleThree(String passwordRuleThree)
     {
         return passwordRuleThree.matches("(?=.*[0-9])(?=.*[A-Z])[^\\s]{8,}$");
     }
 
-    //UC-8 Method to validate password as per Rule-4
-    private static boolean validateRuleFour(String passwordRuleFour)
+    // UC-8: Validate password (Rule 4: Exactly one special character along with previous rules)
+    public static boolean validateRuleFour(String passwordRuleFour)
     {
+        // Explanation: at least one uppercase, one digit, exactly one special character, no spaces
         return passwordRuleFour.matches("^(?=.*[A-Z])(?=.*[0-9])(?=^[^\\W_\\s]*[\\W_][^\\W_\\s]*$)\\S{8,}$");
     }
 
-    //UC-9 Method to clear all the sample emails
-    public static  boolean validEmail(String email)
+    // UC-9: Reusable method to validate emails (same as UC-3, could be improved by avoiding duplication)
+    public static boolean validEmail(String email)
     {
-        return  email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
+        return email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
     }
 
+    // Main method - program entry point
     public static void main(String[] args)
     {
-        Scanner scanner=new Scanner(System.in);
-//        System.out.println("Enter First Name");
-//        String firstName=scanner.nextLine();
-//        System.out.println("First name having First character Upper and having minium 3 character "+validateFirstName(firstName));
+        // Create Scanner object to take input from console
+        Scanner scanner = new Scanner(System.in);
 
-//        System.out.println("Enter Second Name");
-//        String secondName=scanner.nextLine();
-//        System.out.println("Second name having First character Upper and having minium 3 character "+validateSecondName(secondName));
+        // First Name input and validation
+        System.out.println("Enter First Name");
+        String firstName = scanner.nextLine();
+        System.out.println("First name having First character Upper and having minium 3 character " + validateFirstName(firstName));
 
-//        System.out.println("Enter email");
-//        String email=scanner.nextLine();
-//        System.out.println("Email validate "+validateEmail(email));
+        // Second Name input and validation
+        System.out.println("Enter Second Name");
+        String secondName = scanner.nextLine();
+        System.out.println("Second name having First character Upper and having minium 3 character " + validateSecondName(secondName));
 
-//        System.out.println("Enter mobile number");
-//        String mobileNUmber=scanner.nextLine();
-//        System.out.println("Email validate "+validateMobileNumber(mobileNUmber));
+        // Email input and validation
+        System.out.println("Enter email");
+        String email = scanner.nextLine();
+        System.out.println("Email validate " + validateEmail(email));
 
+        // Mobile number input and validation
+        System.out.println("Enter mobile number");
+        String mobileNumber = scanner.nextLine();
+        System.out.println("Mobile number validate " + validateMobileNumber(mobileNumber));
 
-//        System.out.println("Enter password");
-//        String passwordRuleOne=scanner.nextLine();
-//        System.out.println("Email validate "+validateRuleOne(passwordRuleOne));
-
-//        System.out.println("Enter password");
-//        String passwordRuleTwo=scanner.nextLine();
-//        System.out.println("Email validate "+validateRuleTwo(passwordRuleTwo));
-
-//        System.out.println("Enter password");
-//        String passwordRuleThree=scanner.nextLine();
-//        System.out.println("Email validate "+validateRuleThree(passwordRuleThree));
-
+        // Password Rule 1 input and validation
         System.out.println("Enter password");
-        String passwordRuleFour=scanner.nextLine();
-        System.out.println("Email validate "+validateRuleFour(passwordRuleFour));
+        String passwordRuleOne = scanner.nextLine();
+        System.out.println("Password Rule-1 validate " + validateRuleOne(passwordRuleOne));
 
-//        System.out.println("Enter Email");
-//        String validEmail=scanner.nextLine();
-//        System.out.println("Email validate "+validEmail(validEmail));
+        // Password Rule 2 input and validation
+        System.out.println("Enter password");
+        String passwordRuleTwo = scanner.nextLine();
+        System.out.println("Password Rule-2 validate " + validateRuleTwo(passwordRuleTwo));
 
+        // Password Rule 3 input and validation
+        System.out.println("Enter password");
+        String passwordRuleThree = scanner.nextLine();
+        System.out.println("Password Rule-3 validate " + validateRuleThree(passwordRuleThree));
 
+        // Password Rule 4 input and validation
+        System.out.println("Enter password");
+        String passwordRuleFour = scanner.nextLine();
+        System.out.println("Password Rule-4 validate " + validateRuleFour(passwordRuleFour));
+
+        // Final email input to test sample validation again (UC-9)
+        System.out.println("Enter Email");
+        String validEmail = scanner.nextLine();
+        System.out.println("Sample email validate " + validEmail(validEmail));
+
+        // Close the scanner
+        scanner.close();
     }
-
-
-
-
 }
