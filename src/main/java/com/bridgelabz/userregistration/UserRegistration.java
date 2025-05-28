@@ -4,19 +4,19 @@ import java.util.Scanner;
 
 public class UserRegistration
 {
-    //Method to validate first name
+    //UC-1Method to validate first name
     public static boolean validateFirstName(String firstName)
     {
         return firstName.matches("^[A-Z][a-zA-Z]{2,}$");
     }
 
-    //Method to validate second name
+    //UC-2 Method to validate second name
     public static boolean validateSecondName(String secondName)
     {
         return secondName.matches("^[A-Z][a-zA-Z]{2,}$");
     }
 
-    //Method to validate email
+    //UC-3 Method to validate email
     public static  boolean validateEmail(String email)
     {
         return  email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
@@ -24,35 +24,41 @@ public class UserRegistration
         //return email.matches("^[a-zA-Z0-9]+([._%+-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,})+$");
     }
 
-    //Method to validate mobile number
+    //UC-4 Method to validate mobile number
     public static boolean validateMobileNumber(String mobileNumber)
     {
         return mobileNumber.matches("^[0-9]{2,}\\s[0-9]{10}");
     }
 
-    //Method to validate password as per Rule-1
+    //UC-5 Method to validate password as per Rule-1
     public static boolean validateRuleOne(String passwordRuleOne)
     {
         return passwordRuleOne.matches("^[^\\s]{8,}");
     }
 
-    //Method to validate password as per Rule-2
+    //UC-6 Method to validate password as per Rule-2
     public static boolean validateRuleTwo(String passwordRuleTwo)
     {
         return passwordRuleTwo.matches("^(?=.*[A-Z])[^\\s]{8,}$");
     }
 
-    //Method to validate password as per Rule-3
+    //UC-7 Method to validate password as per Rule-3
     public static boolean validateRuleThree(String passwordRuleThree)
     {
         return passwordRuleThree.matches("(?=.*[0-9])(?=.*[A-Z])[^\\s]{8,}$");
     }
 
+    //UC-8 Method to validate password as per Rule-4
     private static boolean validateRuleFour(String passwordRuleFour)
     {
-        return passwordRuleFour.matches("^(?=.*[A-Z])(?=.*[0-9])[^\\s](?=^[^\\W_]*[\\W_][^\\W_]*$).{8,}$");
+        return passwordRuleFour.matches("^(?=.*[A-Z])(?=.*[0-9])(?=^[^\\W_\\s]*[\\W_][^\\W_\\s]*$)\\S{8,}$");
     }
 
+    //UC-9 Method to clear all the sample emails
+    public static  boolean validEmail(String email)
+    {
+        return  email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
+    }
 
     public static void main(String[] args)
     {
@@ -89,6 +95,10 @@ public class UserRegistration
         System.out.println("Enter password");
         String passwordRuleFour=scanner.nextLine();
         System.out.println("Email validate "+validateRuleFour(passwordRuleFour));
+
+//        System.out.println("Enter Email");
+//        String validEmail=scanner.nextLine();
+//        System.out.println("Email validate "+validEmail(validEmail));
 
 
     }
