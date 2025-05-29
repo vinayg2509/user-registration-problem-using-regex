@@ -2,7 +2,9 @@
 package com.bridgelabz.userregistration;
 
 // Import Scanner class for reading user input from console.
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 // Class declaration
 public class UserRegistration
@@ -59,10 +61,23 @@ public class UserRegistration
     }
 
     // UC-9: Reusable method to validate emails (same as UC-3, could be improved by avoiding duplication)
+    // Set to store previously validated (unique) email addresses
+    private static final Set<String> emailSet = new HashSet<>();
     public static boolean validEmail(String email)
     {
-        return email.matches("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
+       String emailRegex= ("^[a-zA-Z0-9]+([._+-]+[a-zA-Z0-9])?@[a-zA-Z0-9]+[a-zA-Z0-9]+\\.[a-z]{2,4}(\\.[a-z]{2,})?$");
+        // Normalize to lowercase to avoid case-sensitive duplicates
+        email = email.toLowerCase();
+
+        // Check format and duplication
+        if (email.matches(emailRegex) && !emailSet.contains(email)) {
+            emailSet.add(email); // Store the email as validated
+            return true;
+        }
+
+        return false; // Invalid format or duplicate
     }
+
 
     // Main method - program entry point
     public static void main(String[] args)
@@ -71,50 +86,53 @@ public class UserRegistration
         Scanner scanner = new Scanner(System.in);
 
         // First Name input and validation
-        System.out.println("Enter First Name");
-        String firstName = scanner.nextLine();
-        System.out.println("First name having First character Upper and having minium 3 character " + validateFirstName(firstName));
+//        System.out.println("Enter First Name");
+//        String firstName = scanner.nextLine();
+//        System.out.println("First name having First character Upper and having minium 3 character " + validateFirstName(firstName));
 
         // Second Name input and validation
-        System.out.println("Enter Second Name");
-        String secondName = scanner.nextLine();
-        System.out.println("Second name having First character Upper and having minium 3 character " + validateSecondName(secondName));
+//        System.out.println("Enter Second Name");
+//        String secondName = scanner.nextLine();
+//        System.out.println("Second name having First character Upper and having minium 3 character " + validateSecondName(secondName));
 
         // Email input and validation
-        System.out.println("Enter email");
-        String email = scanner.nextLine();
-        System.out.println("Email validate " + validateEmail(email));
+//        System.out.println("Enter email");
+//        String email = scanner.nextLine();
+//        System.out.println("Email validate " + validateEmail(email));
 
         // Mobile number input and validation
-        System.out.println("Enter mobile number");
-        String mobileNumber = scanner.nextLine();
-        System.out.println("Mobile number validate " + validateMobileNumber(mobileNumber));
+//        System.out.println("Enter mobile number");
+//        String mobileNumber = scanner.nextLine();
+//        System.out.println("Mobile number validate " + validateMobileNumber(mobileNumber));
 
         // Password Rule 1 input and validation
-        System.out.println("Enter password");
-        String passwordRuleOne = scanner.nextLine();
-        System.out.println("Password Rule-1 validate " + validateRuleOne(passwordRuleOne));
+//        System.out.println("Enter password");
+//        String passwordRuleOne = scanner.nextLine();
+//        System.out.println("Password Rule-1 validate " + validateRuleOne(passwordRuleOne));
 
         // Password Rule 2 input and validation
-        System.out.println("Enter password");
-        String passwordRuleTwo = scanner.nextLine();
-        System.out.println("Password Rule-2 validate " + validateRuleTwo(passwordRuleTwo));
+//        System.out.println("Enter password");
+//        String passwordRuleTwo = scanner.nextLine();
+//        System.out.println("Password Rule-2 validate " + validateRuleTwo(passwordRuleTwo));
 
         // Password Rule 3 input and validation
-        System.out.println("Enter password");
-        String passwordRuleThree = scanner.nextLine();
-        System.out.println("Password Rule-3 validate " + validateRuleThree(passwordRuleThree));
+//        System.out.println("Enter password");
+//        String passwordRuleThree = scanner.nextLine();
+//        System.out.println("Password Rule-3 validate " + validateRuleThree(passwordRuleThree));
 
         // Password Rule 4 input and validation
-        System.out.println("Enter password");
-        String passwordRuleFour = scanner.nextLine();
-        System.out.println("Password Rule-4 validate " + validateRuleFour(passwordRuleFour));
+//        System.out.println("Enter password");
+//        String passwordRuleFour = scanner.nextLine();
+//        System.out.println("Password Rule-4 validate " + validateRuleFour(passwordRuleFour));
 
         // Final email input to test sample validation again (UC-9)
-        System.out.println("Enter Email");
-        String validEmail = scanner.nextLine();
-        System.out.println("Sample email validate " + validEmail(validEmail));
+        String[] testEmails = {"abc@yahoo.com","abc-100@yahoo.com","abc.100@yahoo.com","abc111@abc.com","abc-100@abc.net",
+                                "abc.100@abc.com.au","abc@1.com","abc@gmail.com.com","abc+100@gmail.com"};
 
+        for (String email : testEmails) {
+            boolean isValid = validEmail(email);
+            System.out.println(email + " => " + (isValid ? "Valid & Added" : "Invalid or Duplicate"));
+        }
         // Close the scanner
         scanner.close();
     }
