@@ -75,6 +75,7 @@ public class UserRegistration
             return true;
         }
 
+
         return false; // Invalid format or duplicate
     }
 
